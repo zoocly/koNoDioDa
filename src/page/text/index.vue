@@ -9,7 +9,7 @@
     <a v-bind:href="url">a标签绑定动态连接使用v-bind <strong>来绑定标签的属性</strong></a><br/>
     <a :href="url" target="_blank">使用v-bind 简写 <strong>来绑定标签的属性</strong></a>
     <div>
-      <button v-on:click="btnClick" :class="[clickNum%2 === 0 ? 'red' : 'blue']">{{clickText}}</button>
+      <button @click="btnClick" :class="[clickNum%2 === 0 ? 'red' : 'blue']">{{clickText}}</button>
     </div>
     <div style="margin-top: 10px">
       <ul>
@@ -55,10 +55,12 @@ export default {
     }
   },
   methods:{
+    // ES5的老写法
     btnClick:function (){
       this.clickNum++;
     },
-    liClick:function ({ target:{ textContent = undefined } = {} } = {}){
+    // 使用函数增强类型
+    liClick({ target:{ textContent = undefined } = {} } = {}){
       this.clickList = this.clickList.map(it=>{
         return {...it,check:false}
       });
