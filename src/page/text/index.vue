@@ -13,7 +13,7 @@
     </div>
     <div style="margin-top: 10px">
       <ul>
-        <li v-for="{ check, label } in clickList" :class="{red:check}" :style="{fontSize:`${fontSize}px`}" v-on:click="(e)=>liClick(e)">{{label}}</li>
+        <li v-for="{ check, label } in clickList" :class="{red:check}" :style="{fontSize:`${fontSize}px`}" v-on:click="(e)=>liClick(e,'123')">{{label}}</li>
       </ul>
     </div>
   </div>
@@ -23,7 +23,6 @@
 export default {
   mounted() {
     let that=this;
-    console.log(that.clickNum)
     setTimeout(function (){
       that.name = 'bbbbb';
     },1000)
@@ -60,7 +59,7 @@ export default {
       this.clickNum++;
     },
     // 使用函数增强类型
-    liClick({ target:{ textContent = undefined } = {} } = {}){
+    liClick({ target:{ textContent = undefined } = {} } = {}, a){
       this.clickList = this.clickList.map(it=>{
         return {...it,check:false}
       });
