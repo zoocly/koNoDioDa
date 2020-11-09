@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Comp1/>
+    <Comp1 :name="name" @toFather="getSonInfo"/>
     我来看看情况{{name}}
     <pre>
       function(){
@@ -127,6 +127,9 @@ export default {
     }
   },
   methods:{
+    getSonInfo(val){
+      console.log('接收到的参数', val);
+    },
     submit(){
       console.log('submit',this.tableList);
     },
