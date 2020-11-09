@@ -73,7 +73,6 @@
         {{selectArr}}
       </label>
     </div>
-
   </div>
 </template>
 
@@ -92,6 +91,12 @@ export default {
     this.clickNum = 0;
   },
   data(){
+    /*
+    * 为啥data这边要使用函数来return一个对象
+    * 通过函数生成的对象，之间互不影响，return {} 的对象每个都有新的内存地址
+    * 为什么要 return {}，不 return obj。因为obj的内存地址都指向了同一个
+    * 也可以理解为 对象 是引用数据（不是基本数据类型），直接使用浅复制(都算不上)，所以会造成深浅复制带来的bug
+    * */
     return {
       name: 'aaaaa',
       url:'https://www.baidu.com',

@@ -1,7 +1,8 @@
 <template>
 <div>
-  <a href='javascript:void(0)' @click="func1(age)"> 这是子组件 </a>
-  {{name}}
+  <div>
+    <a href='javascript:void(0)' @click="func1(age)"> 这是子组件 </a>{{name}}
+  </div>
 </div>
 </template>
 
@@ -12,7 +13,7 @@ export default {
   },
   data(){
     return {
-      age:18
+      age:18,
     }
   },
   methods:{
