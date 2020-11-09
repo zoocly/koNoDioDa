@@ -21,7 +21,7 @@
     </div>
     <div>
       <form action="baidu">
-        <!--      修饰符 .prevent 阻止默认事件-->
+        <!--修饰符 .prevent 阻止默认事件-->
         <input type="submit" value="提交" @click.prevent="submit">
       </form>
     </div>
