@@ -11,7 +11,7 @@
     <a :href="url" target="_blank">使用v-bind 简写 <strong>来绑定标签的属性</strong></a>
     <div @click="divClick">
       <button @click="btnClick" :class="[clickNum%2 === 0 ? 'red' : 'blue']">{{clickText}}</button>
-<!--      修饰符 .stop 阻止事件冒泡-->
+      <!--修饰符 .stop 阻止事件冒泡-->
       <button @click.stop="btnClick" :class="[clickNum%2 === 0 ? 'red' : 'blue']">{{clickText}}</button>
     </div>
     <div style="margin-top: 10px">
