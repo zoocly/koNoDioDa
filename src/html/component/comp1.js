@@ -1,6 +1,6 @@
 (function($, window, document,undefined){
-  $.fn.createLunBo = function(props) {
-    console.log(props,'ppppp');
+  $.fn.createLunBo = function (props) {
+    // console.log(props,'ppppp');
     $(this).html(`
       <div id="box">
         <div class="screen">
@@ -22,69 +22,6 @@
         </div>
       </div>
     `);
-    $('.screen').css({
-      height: '100px',
-      width: '200px',
-      position: 'relative',
-      // border: '1px solid red',
-      overflow: 'hidden',
-    });
-    $('.screen > ul').css({
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      width: '3000px',
-      height: '100%',
-      listStyle: 'none',
-      paddingLeft:'0'
-    });
-    $('.screen > ul > li').css({
-      height: '100%',
-      width: '200px',
-      cursor: 'pointer',
-      float:'left'
-    });
-    $('.screen > ol').css({
-      position: 'absolute',
-      bottom: '2px',
-      lineHeight: '20px',
-      left: 'calc(50% - 30px)',
-    });
-    $('.screen > ol > li').css({
-      width: '10px',
-      textAlign: 'center',
-      cursor: 'pointer',
-      display: 'inline-block',
-      border: '1px solid black',
-      padding: '2px'
-    });
-    $('li > img').css({
-      height: '100%',
-      width: '100%',
-      cursor: 'pointer'
-    });
-    $('#arrow span').css({
-      width: '20px',
-      height: '20px',
-      position: 'absolute',
-      top: 'calc(50% - 10px)',
-      background: '#000',
-      cursor: 'pointer',
-      lineHeight: '20px',
-      textAlign: 'center',
-      fontWeight: 'bold',
-      fontFamily: '黑体',
-      fontSize: '20px',
-      color: '#fff',
-      opacity: '0.3',
-      border: '1px solid #fff',
-    });
-    $('#arrow #right').css({
-      right: '5px'
-    });
-    $('.current').css({
-      background: 'rebeccapurple'
-    });
 
     let box = $('#box')[0];
     let ul = $('#ul')[0];
@@ -93,44 +30,42 @@
     let screenW = $('.screen')[0].offsetWidth;
     let pageList = $('ol>li');
 
-    function animate (obj, target){
+    function animate(obj, target) {
       clearInterval(obj.timerID);
-      obj.timerID = setInterval(function (){
+      obj.timerID = setInterval(function () {
         let current = obj.offsetLeft;
-        if(Math.abs( target - current ) > 10){
+        if (Math.abs(target - current) > 10) {
           current += target > current ? 10 : -10;
           obj.style.left = `${current}px`;
-        }else {
+        } else {
           obj.style.left = `${target}px`;
         }
-        if(current === target){
+        if (current === target) {
           clearInterval(obj.timerID);
         }
-      },10);
+      }, 10);
     }
-    function next (){
-      if(index === ul.children.length - 1){
+
+    function next() {
+      if (index === ul.children.length - 1) {
         index = 0;
         ul.style.left = 0;
       }
       index++;
-      // pageList[index - 1].className = "";
-      pageList[index - 1].style.background = "";
+      pageList[index - 1].className = "";
       if (index == ul.children.length - 1) {
-        // pageList[0].className = "current";
-        pageList[0].style.background = "";
+        pageList[0].className = "current";
       } else {
-        // pageList[index].className = "current";
-        pageList[index].style.background = "rebeccapurple";
+        pageList[index].className = "current";
       }
-      animate(ul, -index*screenW);
+      animate(ul, -index * screenW);
     }
 
     let timerID = setInterval(next, 1000);
 
-    for(let i = 0; i < pageList.length; i++){
+    for (let i = 0; i < pageList.length; i++) {
       pageList[i].setAttribute('index', i);
-      pageList[i].onclick = function (){
+      pageList[i].onclick = function () {
         if (index == ul.children.length - 1) {
           index = 0;
           ul.style.left = 0;
@@ -144,28 +79,25 @@
         index = idx;
         console.log(index);
         for (let j = 0; j < pageList.length; j++) {
-          pageList[j].style.background = "";
+          pageList[j].className = "";
         }
-        $(this).css({
-          background: 'rebeccapurple'
-        })
-        // this.className = "current";
+        this.className = "current";
       }
     }
 
-    box.onmouseover = function() {
+    box.onmouseover = function () {
       //左右点击按钮隐藏
       arr.style.display = "block";
       //停止计时器
       clearInterval(timerID);
     }
-    box.onmouseout = function() {
+    box.onmouseout = function () {
       arr.style.display = "none";
       timerID = setInterval(next, 1000);
     }
 
     $('#right').click(next);
-    $('#left').click(function() {
+    $('#left').click(function () {
       if (index == 0) {
         index = ul.children.length - 1;
         ul.style.left = -index * screenW + "px";
@@ -173,13 +105,10 @@
       index--;
       animate(ul, -index * screenW);
       for (let i = 0; i < pageList.length; i++) {
-        // pageList[i].className = "";
-        pageList[i].style.background = "";
+        pageList[i].className = "";
       }
-      // pageList[index].className = "current";
-      $(this).css({
-        background: 'rebeccapurple'
-      })
+      pageList[index].className = "current";
+
     })
-  }
+  };
 })(jQuery, window, document);
