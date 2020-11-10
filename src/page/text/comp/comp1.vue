@@ -3,13 +3,29 @@
   <div>
     <a href='javascript:void(0)' @click="func1(age)"> 这是子组件 </a>{{name}}
   </div>
+  {{url}}{{clickNum}}{{urls}}{{clickList}}
 </div>
 </template>
 
 <script>
 export default {
   props:{
-    name,
+    urls:{
+      default:'urls是默认值 ',
+    },
+    url:String,
+    name:{
+      type:String,
+      default: '',
+      require:true,
+    },
+    clickNum:Number,
+    clickList:{
+      type:Array,  // 当类型是Array或Object时，default需要传入函数
+      default(){
+        return []
+      }
+    }
   },
   data(){
     return {

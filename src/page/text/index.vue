@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Comp1 :name="name" @toFather="getSonInfo"/>
+    <Comp1 :name="name"
+           :url="url"
+           :clickNum="clickNum"
+           :clickList="clickList"
+           @toFather ="getSonInfo"/>
     我来看看情况{{name}}
     <pre>
       function(){
