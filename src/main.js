@@ -13,3 +13,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+// runtime-compiler
+
