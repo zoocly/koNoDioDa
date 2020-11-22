@@ -1,14 +1,12 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 
+import actions from "./actions";
+import mutations from "./mutations";
+import getters from "./getters";
 Vue.use(Vuex);
 
-const modulesA = {
-  state:{},
-  actions:{},
-  mutations:{},
-  getters:{}
-}
+const modulesA = import('../store/modules/modulesA');
 
 const store = new Vuex.Store({
   state: {
@@ -18,40 +16,10 @@ const store = new Vuex.Store({
       age: 13
     }
   },
-  actions: {
-    changeSth(context, {payload}) {
-      console.log(context);
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          context.commit({
-            type: 'change',
-            payload
-          })
-          resolve(payload)
-        }, 2000);
-      })
-    }
-  },
+  actions,
   // 数据处理的逻辑都在里面
-  mutations: {
-    add(state, {payload}) {
-      const {val} = payload;
-      state.counter += val
-    },
-    change(state, {payload}) {
-      state.changeObj = payload;
-    }
-  },
-  getters: {
-    addMore: (state, getter) => (num = 1) => {
-      state.counter += num;
-    }
-    // addMore(state, getter){
-    //   return (num = 1)=>{
-    //     state.counter += num;
-    //   }
-    // }
-  },
+  mutations,
+  getters,
   modules:{
     a:modulesA
   }
